@@ -1,0 +1,21 @@
+Package: droppr
+Title: Tools for Sensitivity Analysis via Iterated Dropping
+Authors@R: person("Chris", "Krogslund", role = c("aut", "cre"),
+    email = "ckrogslund@berkeley.edu")
+Version: 0.1.0
+Date: 2015-07-02
+Description: Provides a number of functions for carrying out
+    sensitivity analysis using iterated dropping of cases,
+    including n-th order jackknife and DBSCAN.
+Depends:
+    R (>= 3.1.1),
+License: GPL (>= 3)
+LazyData: yes
+Imports:
+    fpc,
+    plyr,
+    ggplot2,
+    parallel
+Maintainer: Chris Krogslund <ckrogslund@berkeley.edu>
+NeedsCompilation: no
+Repository: github

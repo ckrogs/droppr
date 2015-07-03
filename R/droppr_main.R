@@ -64,7 +64,7 @@ droppr_main<-function(d, analysis, method, n.drops=NULL, unit.vars=NULL, eps=NUL
     drop.order<-apply(X = drops.search, MARGIN = 2, FUN = paste0, collapse=";")
 
     if(time.warn){
-      sam<-sample(x = 1:ncol(drops.search), size = 100, replace = F)
+      sam<-sample(x = 1:ncol(drops.search), size = 100, replace = T)
       est.time<-system.time(expr = {
         drop.results<-parallel::mclapply(X = sam, FUN = function(x){
           tryCatch(expr = {

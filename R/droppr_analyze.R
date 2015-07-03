@@ -18,7 +18,7 @@ droppr_analyze<-function(droppr.out){
   colnames(cluster.size)<-c("cluster", "prop")
   
   # lm/glm processing
-  if(droppr.out$drop.results.classes %in% c("lm", "glm") & droppr.out$drop.method=="dbscan"){
+  if(droppr.out$drop.results.classes %in% c("lm", "glm")){
     out<-lapply(X = 1:length(droppr.out$drop.order), FUN = function(x){
       reg.sum<-summary(droppr.out$drop.results[[x]])
       coefs<-data.frame(var=rownames(reg.sum$coefficients), cluster=droppr.out$drop.order[[x]], reg.sum$coefficients, 

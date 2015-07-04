@@ -43,7 +43,7 @@
 #'#    reg<-lm(logpgp95~avexpr+logem4, data = ajr)
 #'#    summary(reg)$coefficients
 #'# }
-droppr_main<-function(d, analysis, method, n.drops=NULL, unit.vars=NULL, eps=NULL, min.pts=NULL, ..., time.warn=TRUE, verbose=TRUE){
+droppr_main<-function(d, analysis, method, n.drops=NULL, unit.vars=NULL, eps=NULL, min.pts=NULL, cols=NULL, ..., time.warn=TRUE, verbose=TRUE){
   
   # Make spare data copy
   d.copy<-d
@@ -56,6 +56,8 @@ droppr_main<-function(d, analysis, method, n.drops=NULL, unit.vars=NULL, eps=NUL
     
     if(length(unit.vars)>1){
       drops<-apply(X = d[,unit.vars], MARGIN = 1, FUN = paste0, collapse=",") 
+    }else if(is.null(unit.vars)){
+      drops<-1:nrow(d)
     }else{
       drops<-d[,unit.vars]
     }
@@ -98,7 +100,7 @@ droppr_main<-function(d, analysis, method, n.drops=NULL, unit.vars=NULL, eps=NUL
   if(method=="dbscan"){
     cat("Running DBSCAN...\n")
     
-    data<-droppr::droppr_dbscan_data(d = ajr, eps = eps, min.pts = min.pts)
+    data<-droppr::droppr_dbscan_data(d = d, eps = eps, min.pts = min.pts, cols = cols)
     
     base.result<-analysis(data)
     

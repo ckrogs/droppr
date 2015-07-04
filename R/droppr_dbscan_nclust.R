@@ -12,10 +12,15 @@
 #'
 #'\item{\code{params.df}}{a data frame containing combinations of parameter values and the resulting number of DBSCAN clusters}
 #'\item{\code{params.plot}}{a ggplot object depicting the elbow curve for parameter combinations}
-droppr_dbscan_nclust<-function(d, eps, min.pts, ...){
+droppr_dbscan_nclust<-function(d, eps, min.pts, cols=NULL, ...){
   
   # Reserve original data
   data<-d
+  
+  # Keep only desired columns
+  if(!is.null(cols)){
+    data<-data[,cols]
+  }
   
   # Remove incomplete cases
   data<-data[complete.cases(data),]

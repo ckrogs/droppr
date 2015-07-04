@@ -8,10 +8,15 @@
 #' @param ... optional arguments passed to \code{fpc::dbscan()}
 #' 
 #' @return Returns a data frame with a column of DBSCAN clusters
-droppr_dbscan_data<-function(d, eps, min.pts, ...){
+droppr_dbscan_data<-function(d, eps, min.pts, cols=NULL...){
 
   # Reserve original data
   data<-d
+  
+  # Keep only desired columns
+  if(!is.null(cols)){
+    data<-data[,cols]
+  }
   
   # Remove incomplete cases
   data<-data[complete.cases(data),]
